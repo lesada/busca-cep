@@ -26,6 +26,7 @@ function App() {
     }
     catch (err) {
       setInput('');
+      setData('');
       if (err) setError(err);
     }
 
@@ -35,14 +36,12 @@ function App() {
   return (
     <div className="container">
       <h1 className="title">Buscador de CEP</h1>
-
-      <div className="containerInput">
-        <input type="text" className="input" placeholder="Digite o CEP..." value={input} onChange={(e) => setInput(e.target.value)} />
-
-        <button className="buttonSearch" onClick={handleSearch}>
-          <FiSearch size={25} color="#FFF" />
-        </button>
-      </div>
+        <div className="containerInput">
+          <input type="text" className="input" placeholder="Digite o CEP..." value={input} onChange={(e) => setInput(e.target.value)} />
+          <button className="buttonSearch" onClick={handleSearch}>
+            <FiSearch size={25} color="#FFF" />
+          </button>
+        </div>
       {Object.keys(data).length > 0 && (
         <main className="main">
           <h2>CEP: {data.cep}</h2>
