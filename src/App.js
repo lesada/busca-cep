@@ -37,7 +37,7 @@ function App() {
     <div className="container">
       <h1 className="title">Buscador de CEP</h1>
         <div className="containerInput">
-          <input type="text" className="input" placeholder="Digite o CEP..." value={input} onChange={(e) => setInput(e.target.value)} />
+          <input type="text" className="input" placeholder="Digite o CEP..." value={input} onChange={(e) => setInput((v) => e.target.validity.valid ? e.target.value : v)}  pattern="[0-9]*"/>
           <button className="buttonSearch" onClick={handleSearch}>
             <FiSearch size={25} color="#FFF" />
           </button>
