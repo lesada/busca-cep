@@ -7,6 +7,7 @@ function App() {
 
   const [input, setInput] = useState('');
   const [data, setData] = useState('');
+  const [error, setError] = useState('');
 
 
 
@@ -21,10 +22,11 @@ function App() {
       const response = await api.get(`${input}/json`);
       setData(response.data);
       setInput('');
+      setError('');
     }
     catch (err) {
       setInput('');
-      console.log(err);
+      if (err) setError(err);
     }
 
 
@@ -48,6 +50,12 @@ function App() {
           <span>Complemento: {data.complemento}</span>
           <span>Bairro: {data.bairro}</span>
           <span>Cidade: {data.localidade} - {data.uf}</span>
+        </main>
+      )}
+      {Object.keys(error).length > 0 && (
+        <main className="main">
+          <h2>O CEP não foi encontrado</h2>
+          <span>Verifique se o CEP é válido e tente novamente</span>
         </main>
       )}
     </div>
