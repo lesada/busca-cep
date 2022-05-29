@@ -17,15 +17,15 @@ function App() {
       console.log("nada")
       return
     }
-    
+
     try {
       const response = await api.get(`${input}/json`);
       setData(response.data);
       setInput('');
     }
     catch (err) {
-      console.log(err);
       setInput('');
+      console.log(err);
     }
 
 
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="title">Buscador CEP</h1>
+      <h1 className="title">Buscador de CEP</h1>
 
       <div className="containerInput">
         <input type="text" className="input" placeholder="Digite o CEP..." value={input} onChange={(e) => setInput(e.target.value)} />
@@ -42,13 +42,15 @@ function App() {
           <FiSearch size={25} color="#FFF" />
         </button>
       </div>
-      <main className="main">
-        <h2>CEP: {data.cep}</h2>
-        <span>Logradouro: {data.logradouro}</span>
-        <span>Complemento: {data.complemento}</span>
-        <span>Bairro: {data.bairro}</span>
-        <span>Cidade: {data.localidade} - {data.uf}</span>
-      </main>
+      {Object.keys(data).length > 0 && (
+        <main className="main">
+          <h2>CEP: {data.cep}</h2>
+          <span>Logradouro: {data.logradouro}</span>
+          <span>Complemento: {data.complemento}</span>
+          <span>Bairro: {data.bairro}</span>
+          <span>Cidade: {data.localidade} - {data.uf}</span>
+        </main>
+      )}
     </div>
   );
 }
